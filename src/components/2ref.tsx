@@ -1,3 +1,22 @@
+/**
+ * React Ref 的三种主要用法示例:
+ * 
+ * 1. DOM引用 (访问DOM节点)
+ *    - 使用 useRef<HTMLElement> 创建引用
+ *    - 通过 ref 属性绑定到 DOM 元素
+ *    - 可以直接操作 DOM，如修改样式、获取尺寸等
+ * 
+ * 2. 值引用 (保存可变值)
+ *    - 用于存储任意值，且在组件重渲染时保持不变
+ *    - 修改 .current 不会触发组件重渲染
+ *    - 常用于存储计数器、定时器ID等
+ * 
+ * 3. 组件引用 (调用子组件方法)
+ *    - 使用 forwardRef 和 useImperativeHandle 暴露子组件方法
+ *    - 父组件可以调用子组件的指定方法
+ *    - 需要定义 ref 的类型接口
+ */
+
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 
 // 定义子组件的 ref 类型
