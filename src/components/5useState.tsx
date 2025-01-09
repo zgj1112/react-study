@@ -2,28 +2,28 @@ import React, { useState } from "react";
 
 /*
  * React useState Hook 知识点：
- * 
+ *
  * 1. 基础用法：
  *    - 声明状态变量
  *    - 获取状态更新函数
  *    - 设置初始值
- * 
+ *
  * 2. 状态类型：
  *    - 简单类型（数字、字符串、布尔值）
  *    - 对象类型
  *    - 数组类型
- * 
+ *
  * 3. 状态更新：
  *    - 直接设置新值
  *    - 基于之前的状态更新
  *    - 使用函数式更新
- * 
+ *
  * 4. 注意事项：
  *    - 状态更新是异步的
  *    - 保持状态的不可变性
  *    - 避免重复的状态
  *    - 正确处理对象和数组
- * 
+ *
  * 5. 最佳实践：
  *    - 使用多个状态变量分离关注点
  *    - 合理组织状态结构
@@ -32,8 +32,23 @@ import React, { useState } from "react";
  */
 
 const UseStateDemo: React.FC = () => {
-  // 基础数字状态示例
+  // 数字类型
   const [count, setCount] = useState<number>(0);
+
+  // 字符串类型
+  // const [name, setName] = useState<string>('');
+
+  // // 对象类型
+  // // const [user, setUser] = useState<{name: string; age: number}>({ name: '', age: 0 });
+
+  // // 数组类型
+  // const [list, setList] = useState<string[]>([]);
+
+  // // 可以省略泛型，TypeScript 会自动推断类型
+  // const [value, setValue] = useState(0); // 自动推断为 number 类型
+
+  // 基础数字状态示例
+  // const [count, setCount] = useState<number>(0);
 
   // 对象状态示例
   const [user, setUser] = useState<{

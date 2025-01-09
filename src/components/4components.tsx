@@ -62,7 +62,40 @@ const ListComponent: React.FC = () => {
   );
 };
 
-// 6. 组合组件 - 将上述组件组合在一起
+// 6. 类组件示例
+class ClassComponent extends React.Component<Record<string, never>, { count: number }> {
+  constructor(props: Record<string, never>) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  componentDidMount() {
+    console.log('类组件已挂载');
+  }
+
+  componentWillUnmount() {
+    console.log('类组件将要卸载');
+  }
+
+  handleClick = () => {
+    this.setState(prevState => ({
+      count: prevState.count + 1
+    }));
+  }
+
+  render() {
+    return (
+      <div>
+        <p>类组件中的计数: {this.state.count}</p>
+        <button onClick={this.handleClick}>增加</button>
+      </div>
+    );
+  }
+}
+
+// 7. 组合组件 - 将上述组件组合在一起
 const ComponentsDemo: React.FC = () => {
   return (
     <div style={{ padding: '20px' }}>
@@ -91,6 +124,11 @@ const ComponentsDemo: React.FC = () => {
       <section>
         <h3>5. 列表渲染</h3>
         <ListComponent />
+      </section>
+
+      <section>
+        <h3>6. 类组件示例</h3>
+        <ClassComponent />
       </section>
     </div>
   );

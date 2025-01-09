@@ -12,10 +12,11 @@ import StyleDemo from "./components/1style";
 import RefDemo from "./components/2ref";
 import PropsDemo from "./components/3props";
 import ComponentsDemo from "./components/4components";
-import UseStateDemo from './components/5useState';
-import EventsDemo from './components/7events';
-import LifecycleDemo from './components/8lifecycle';
-import RenderingDemo from './components/9rendering';
+import UseStateDemo from "./components/5useState";
+import UseEffectDemo from "./components/6useEffect";
+import EventsDemo from "./components/7events";
+import LifecycleDemo from "./components/8lifecycle";
+import RenderingDemo from "./components/9rendering";
 
 function App() {
   return (
@@ -28,8 +29,10 @@ function App() {
       <PropsDemo />
       {/* 引入 组件 示例组件 */}
       <ComponentsDemo />
-       {/* 引入 state 示例组件 */}
+      {/* 引入 state 示例组件 */}
       <UseStateDemo />
+      {/* 引入 UseEffect 示例组件 */}
+      <UseEffectDemo />
       {/* 引入事件处理示例组件 */}
       <EventsDemo />
       {/* 引入生命周期示例组件 */}

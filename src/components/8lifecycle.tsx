@@ -1,81 +1,187 @@
 import { Component } from "react";
 
+// 定义 Props 和 State 接口
 interface Props {
-  [key: string]: string;
+  title?: string;
 }
+
 interface State {
   count: number;
   error: string;
+  data: string[];
 }
 
 class LifecycleDemo extends Component<Props, State> {
+  // 1. 初始化阶段
   constructor(props: Props) {
     super(props);
     this.state = {
       count: 0,
       error: "",
+      data: [],
     };
-    console.log("1. 构造函数执行");
+    console.log("1. constructor: 组件初始化");
   }
 
-  componentDidMount() {
-    console.log("3. 组件挂载完成");
-    // 模拟数据获取
-    setTimeout(() => {
-      this.setState({ count: 1 });
-    }, 1000);
-  }
-
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    console.log("4. 组件更新完成", prevProps, {
+  // 2. 挂载阶段 - 从 Props 获取 State
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
+    console.log("2. getDerivedStateFromProps:", {
+      nextProps,
       prevState,
+    });
+    // 可以返回一个对象来更新 state，返回 null 表示不更新
+    return null;
+  }
+
+  // 3. 挂载阶段 - 组件是否应该更新
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    console.log("3. shouldComponentUpdate:", {
+      nextProps,
+      nextState,
+      currentProps: this.props,
+      currentState: this.state,
+    });
+    // 返回 true 表示需要更新，返回 false 表示不更新
+    return true;
+  }
+
+  // 4. 挂载阶段 - 在渲染前获取快照
+  getSnapshotBeforeUpdate(prevProps: Props, prevState: State): number | null {
+    console.log("4. getSnapshotBeforeUpdate:", {
+      prevProps,
+      prevState,
+      currentProps: this.props,
+      currentState: this.state,
+    });
+    // 返回值会作为 componentDidUpdate 的第三个参数
+    return null;
+  }
+
+  // 5. 挂载阶段 - 组件挂载完成
+  componentDidMount() {
+    console.log("5. componentDidMount: 组件挂载完成");
+    // 示例：组件挂载后加载数据
+    this.loadData();
+  }
+
+  // 6. 更新阶段 - 组件更新完成
+  componentDidUpdate(prevProps: Props, prevState: State, snapshot: number | null) {
+    console.log("6. componentDidUpdate:", {
+      prevProps,
+      prevState,
+      snapshot,
+      currentProps: this.props,
       currentState: this.state,
     });
   }
 
+  // 7. 卸载阶段 - 组件即将卸载
   componentWillUnmount() {
-    console.log("5. 组件即将卸载");
+    console.log("7. componentWillUnmount: 组件即将卸载");
+    // 清理工作：取消订阅、清除定时器等
   }
 
-  static getDerivedStateFromProps(props: Props, state: State) {
-    console.log("2. 从属性获取状态", props, state);
-    return null;
+  // 8. 错误处理 - 捕获渲染错误
+  static getDerivedStateFromError(error: Error) {
+    console.log("8. getDerivedStateFromError:", error);
+    // 返回新的 state 来更新界面
+    return { error: error.message };
   }
 
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
-    console.log("是否应该更新组件", nextProps, nextState);
-    return true;
+  // 9. 错误处理 - 记录错误信息
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.log("9. componentDidCatch:", {
+      error,
+      errorInfo,
+    });
+    // 可以将错误信息发送到服务器
   }
 
-  handleClick = () => {
+  // 模拟加载数据
+  private loadData = () => {
+    setTimeout(() => {
+      this.setState({
+        data: ["数据1", "数据2", "数据3"],
+      });
+    }, 1000);
+  };
+
+  // 按钮点击处理
+  private handleClick = () => {
     this.setState((prevState) => ({
       count: prevState.count + 1,
     }));
   };
 
+  // 模拟错误
+  private handleError = () => {
+    throw new Error("手动触发错误");
+  };
+
+  // 渲染函数
   render() {
-    console.log("3. 渲染函数执行");
+    console.log("render: 组件渲染");
+
+    if (this.state.error) {
+      return <div>错误: {this.state.error}</div>;
+    }
+
     return (
       <div className="lifecycle-demo">
-        <h2>React 生命周期示例</h2>
+        <h2>{this.props.title || "React 生命周期示例"}</h2>
 
         <section>
-          <h3>1. 计数器示例</h3>
-          <p>当前计数: {this.state.count}</p>
-          <button onClick={this.handleClick}>增加</button>
+          <h3>1. 状态演示</h3>
+          <p>计数: {this.state.count}</p>
+          <button onClick={this.handleClick}>增加计数</button>
+          <button onClick={this.handleError}>触发错误</button>
         </section>
 
         <section>
-          <h3>2. 生命周期方法</h3>
-          <ul>
-            <li>constructor: 初始化</li>
-            <li>getDerivedStateFromProps: 属性转换</li>
-            <li>render: 渲染</li>
-            <li>componentDidMount: 挂载完成</li>
-            <li>shouldComponentUpdate: 更新判断</li>
-            <li>componentDidUpdate: 更新完成</li>
-            <li>componentWillUnmount: 即将卸载</li>
-          </ul>
+          <h3>2. 数据加载演示</h3>
+          {this.state.data.length > 0 ? (
+            <ul>
+              {this.state.data.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>加载中...</p>
+          )}
+        </section>
+
+        <section>
+          <h3>3. 生命周期顺序</h3>
+          <ol>
+            <li>初始化阶段：
+              <ul>
+                <li>constructor (初始化)</li>
+                <li>getDerivedStateFromProps (属性转换)</li>
+                <li>render (首次渲染)</li>
+                <li>componentDidMount (挂载完成)</li>
+              </ul>
+            </li>
+            <li>更新阶段：
+              <ul>
+                <li>getDerivedStateFromProps</li>
+                <li>shouldComponentUpdate (是否更新)</li>
+                <li>render (重新渲染)</li>
+                <li>getSnapshotBeforeUpdate (更新前快照)</li>
+                <li>componentDidUpdate (更新完成)</li>
+              </ul>
+            </li>
+            <li>卸载阶段：
+              <ul>
+                <li>componentWillUnmount (即将卸载)</li>
+              </ul>
+            </li>
+            <li>错误处理：
+              <ul>
+                <li>getDerivedStateFromError (渲染错误)</li>
+                <li>componentDidCatch (捕获错误)</li>
+              </ul>
+            </li>
+          </ol>
         </section>
       </div>
     );
