@@ -20,7 +20,7 @@ import React, { useEffect, useState } from "react";
 
 const UseEffectDemo: React.FC = () => {
   const [count, setCount] = useState(0);
-  const [data, setData] = useState<string>("");
+  // const [data, setData] = useState<string>("");
 
   // 1. 无依赖项的 useEffect
   useEffect(() => {
@@ -53,17 +53,17 @@ const UseEffectDemo: React.FC = () => {
 
   // 5. 模拟数据获取
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://api.example.com/data");
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error("数据获取失败", error);
-      }
-    };
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await fetch("https://api.example.com/data");
+    //     const result = await response.json();
+    //     setData(result);
+    //   } catch (error) {
+    //     console.error("数据获取失败", error);
+    //   }
+    // };
 
-    fetchData();
+    // fetchData();
   }, []);
 
   return (
@@ -84,7 +84,7 @@ const UseEffectDemo: React.FC = () => {
           <li>异步操作处理</li>
           <li>避免无限循环</li>
           <li>依赖项的正确使用</li>
-          <li>{data}</li>
+          {/* <li>{data}</li> */}
         </ol>
       </section>
     </div>

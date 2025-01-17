@@ -20,12 +20,13 @@ class LifecycleDemo extends Component<Props, State> {
       error: "",
       data: [],
     };
-    console.log("1. constructor: 组件初始化");
+    console.log("========== 初始化阶段 ==========");
+    console.log("1. constructor 被调用");
   }
 
   // 2. 挂载阶段 - 从 Props 获取 State
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    console.log("2. getDerivedStateFromProps:", {
+    console.log("2. getDerivedStateFromProps 被调用:", {
       nextProps,
       prevState,
     });
@@ -35,23 +36,23 @@ class LifecycleDemo extends Component<Props, State> {
 
   // 3. 挂载阶段 - 组件是否应该更新
   shouldComponentUpdate(nextProps: Props, nextState: State) {
-    console.log("3. shouldComponentUpdate:", {
-      nextProps,
-      nextState,
-      currentProps: this.props,
-      currentState: this.state,
+    const shouldUpdate = true;
+    console.log("========== 更新阶段 ==========");
+    console.log("3. shouldComponentUpdate 被调用:", {
+      更新原因: nextState.count !== this.state.count ? "计数更新" : "其他更新",
+      当前count: this.state.count,
+      新count: nextState.count,
+      shouldUpdate,
     });
     // 返回 true 表示需要更新，返回 false 表示不更新
-    return true;
+    return shouldUpdate;
   }
 
   // 4. 挂载阶段 - 在渲染前获取快照
   getSnapshotBeforeUpdate(prevProps: Props, prevState: State): number | null {
-    console.log("4. getSnapshotBeforeUpdate:", {
-      prevProps,
-      prevState,
-      currentProps: this.props,
-      currentState: this.state,
+    console.log("4. getSnapshotBeforeUpdate 被调用:", {
+      prevCount: prevState.count,
+      newCount: this.state.count,
     });
     // 返回值会作为 componentDidUpdate 的第三个参数
     return null;
@@ -59,25 +60,24 @@ class LifecycleDemo extends Component<Props, State> {
 
   // 5. 挂载阶段 - 组件挂载完成
   componentDidMount() {
-    console.log("5. componentDidMount: 组件挂载完成");
+    console.log("5. componentDidMount 被调用 - 组件完成首次挂载");
     // 示例：组件挂载后加载数据
     this.loadData();
   }
 
   // 6. 更新阶段 - 组件更新完成
-  componentDidUpdate(prevProps: Props, prevState: State, snapshot: number | null) {
-    console.log("6. componentDidUpdate:", {
-      prevProps,
-      prevState,
-      snapshot,
-      currentProps: this.props,
-      currentState: this.state,
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    console.log("6. componentDidUpdate 被调用:", {
+      更新类型: prevState.count !== this.state.count ? "计数更新" : "其他更新",
+      prevCount: prevState.count,
+      currentCount: this.state.count,
     });
   }
 
   // 7. 卸载阶段 - 组件即将卸载
   componentWillUnmount() {
-    console.log("7. componentWillUnmount: 组件即将卸载");
+    console.log("========== 卸载阶段 ==========");
+    console.log("7. componentWillUnmount 被调用 - 组件即将卸载");
     // 清理工作：取消订阅、清除定时器等
   }
 
@@ -120,7 +120,7 @@ class LifecycleDemo extends Component<Props, State> {
 
   // 渲染函数
   render() {
-    console.log("render: 组件渲染");
+    console.log(`render 被调用 - count: ${this.state.count}`);
 
     if (this.state.error) {
       return <div>错误: {this.state.error}</div>;
@@ -153,7 +153,8 @@ class LifecycleDemo extends Component<Props, State> {
         <section>
           <h3>3. 生命周期顺序</h3>
           <ol>
-            <li>初始化阶段：
+            <li>
+              初始化阶段：
               <ul>
                 <li>constructor (初始化)</li>
                 <li>getDerivedStateFromProps (属性转换)</li>
@@ -161,7 +162,8 @@ class LifecycleDemo extends Component<Props, State> {
                 <li>componentDidMount (挂载完成)</li>
               </ul>
             </li>
-            <li>更新阶段：
+            <li>
+              更新阶段：
               <ul>
                 <li>getDerivedStateFromProps</li>
                 <li>shouldComponentUpdate (是否更新)</li>
@@ -170,12 +172,14 @@ class LifecycleDemo extends Component<Props, State> {
                 <li>componentDidUpdate (更新完成)</li>
               </ul>
             </li>
-            <li>卸载阶段：
+            <li>
+              卸载阶段：
               <ul>
                 <li>componentWillUnmount (即将卸载)</li>
               </ul>
             </li>
-            <li>错误处理：
+            <li>
+              错误处理：
               <ul>
                 <li>getDerivedStateFromError (渲染错误)</li>
                 <li>componentDidCatch (捕获错误)</li>

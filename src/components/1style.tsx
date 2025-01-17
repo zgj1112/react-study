@@ -1,4 +1,5 @@
 import "../App.css";
+// import BackToHome from './common/BackToHome';
 
 function StyleDemo() {
   const name = "Hello Word";
@@ -12,7 +13,8 @@ function StyleDemo() {
   };
 
   return (
-    <>
+    <div>
+      {/* <BackToHome /> */}
       <div>
         <h2>样式写法 示例</h2>
 
@@ -25,7 +27,7 @@ function StyleDemo() {
           <span style={{ color: "red", fontSize: "55px" }}>{name}</span>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
