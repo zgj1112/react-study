@@ -103,6 +103,12 @@ const modules: ModuleCard[] = [
     description: "页面路由和导航控制",
     path: "/router",
   },
+  {
+    id: 15,
+    title: "接口调用",
+    description: "接口调用",
+    path: "/axios",
+  },
 ];
 
 /**
