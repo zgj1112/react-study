@@ -23,6 +23,7 @@ import ComponentsDemo from "./components/4components";
 import UseStateDemo from "./components/5useState";
 import UseEffectDemo from "./components/6useEffect";
 import CustomHooksDemo from "./components/10customHooks";
+import UseReducerDemo from "./components/16useReducer";
 
 // 生命周期与渲染
 import EventsDemo from "./components/7events";
@@ -35,6 +36,10 @@ import PerformanceDemo from "./components/12performance";
 import ReduxDemo from "./components/13reduxDemo";
 // import RouterDemo from "./components/14routerDemo";
 import AxiosDemo from "./components/15axiosDemo";
+
+import UseImmerDemo from "./components/17useImmer";
+import UseSyncExternalStoreDemo from "./components/18useSyncExternalStore";
+
 /**
  * 应用主组件
  * 配置路由和Redux状态管理
@@ -71,6 +76,13 @@ function App() {
             <Route path="/redux" element={<ReduxDemo />} />
             {/* <Route path="/router" element={<RouterDemo />} /> */}
             <Route path="/axios" element={<AxiosDemo />} />
+            {/* <Route path="/axios" element={<useReducerDemo />} /> */}
+            <Route path="/useReducer" element={<UseReducerDemo />} />
+            <Route path="/useImmer" element={<UseImmerDemo />} />
+            <Route
+              path="/useSyncExternalStore"
+              element={<UseSyncExternalStoreDemo />}
+            />
           </Routes>
         </div>
       </BrowserRouter>

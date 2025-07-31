@@ -79,6 +79,19 @@ const UseStateDemo: React.FC = () => {
     }
   };
 
+  //测试异步
+  const onhandelClick = () => {
+    // 以下代码只执行第一行 自带防抖
+    // setCount(count + 1);
+    // setCount(count + 1);
+    // setCount(count + 1);
+
+    // 实现效果
+    setCount((state) => state + 1);
+    setCount((state) => state + 1);
+    setCount((state) => state + 1);
+  };
+
   return (
     <div className="use-state-demo">
       <h2>useState 使用示例</h2>
@@ -89,6 +102,7 @@ const UseStateDemo: React.FC = () => {
         <p>当前计数: {count}</p>
         <button onClick={() => setCount(count + 1)}>增加</button>
         <button onClick={() => setCount(count - 1)}>减少</button>
+        <button onClick={onhandelClick}>测试异步</button>
       </section>
 
       {/* 对象状态示例 */}

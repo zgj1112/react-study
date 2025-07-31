@@ -42,13 +42,13 @@ const UserList = () => {
 
 // 用户详情组件
 const UserDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
   return (
     <div>
       <h2>用户详情</h2>
-      <p>用户ID: {id}</p>
+      {/* <p>用户ID: {id}</p> */}
       <button onClick={() => navigate(-1)}>返回</button>
     </div>
   );
@@ -58,11 +58,11 @@ const UserDetail = () => {
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
+  // const from = location.state?.from?.pathname || "/";
 
   const handleLogin = () => {
     // 这里应该调用真实的登录逻辑
-    navigate(from, { replace: true });
+    // navigate(from, { replace: true });
   };
 
   return (

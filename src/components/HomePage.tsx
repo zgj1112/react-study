@@ -109,6 +109,24 @@ const modules: ModuleCard[] = [
     description: "接口调用",
     path: "/axios",
   },
+  {
+    id: 16,
+    title: "useReducer",
+    description: "useReducer",
+    path: "/useReducer",
+  },
+  {
+    id: 17,
+    title: "useImmer",
+    description: "useImmer",
+    path: "/useImmer",
+  },
+  {
+    id: 18,
+    title: "useSyncExternalStore",
+    description: "useSyncExternalStore",
+    path: "/useSyncExternalStore",
+  },
 ];
 
 /**
@@ -133,4 +151,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage; 
+export default HomePage;
