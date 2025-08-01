@@ -1,97 +1,76 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-// 创建主题上下文
+// 1. 定义类型
+type Theme = "light" | "dark";
+
 interface ThemeContextType {
-  theme: 'light' | 'dark';
+  theme: Theme;
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+// 2. 创建 Context，设定默认值（通常不会使用默认值功能）
+const ThemeContext = createContext<ThemeContextType>({
+  theme: "light",
+  toggleTheme: () => {},
+});
 
-// 创建用户上下文
-interface UserContextType {
-  user: { name: string; role: string } | null;
-  login: (userData: { name: string; role: string }) => void;
-  logout: () => void;
-}
-
-const UserContext = createContext<UserContextType | undefined>(undefined);
-
-// Provider 组件
-export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [user, setUser] = useState<{ name: string; role: string } | null>(null);
+// 3. 创建 Provider 包裹组件
+const FatherBox = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState<Theme>("light");
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
-  };
-
-  const login = (userData: { name: string; role: string }) => {
-    setUser(userData);
-  };
-
-  const logout = () => {
-    setUser(null);
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <UserContext.Provider value={{ user, login, logout }}>
-        {children}
-      </UserContext.Provider>
+      {children}
     </ThemeContext.Provider>
   );
 };
 
-// 自定义 Hook
-const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) throw new Error('useTheme must be used within ThemeProvider');
-  return context;
-};
+// 4. 使用 Theme 的组件
+const ChildrenBox = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-const useUser = () => {
-  const context = useContext(UserContext);
-  if (!context) throw new Error('useUser must be used within UserProvider');
-  return context;
-};
-
-// 示例组件
-const ContextDemo = () => {
-  const { theme, toggleTheme } = useTheme();
-  const { user, login, logout } = useUser();
+  const backgroundColor = theme === "light" ? "#ffffff" : "#1a1a1a";
+  const textColor = theme === "light" ? "#000000" : "#ffffff";
 
   return (
-    <div style={{ 
-      background: theme === 'light' ? '#fff' : '#333',
-      color: theme === 'light' ? '#333' : '#fff',
-      padding: '20px'
-    }}>
-      <h2>Context 示例</h2>
-      
-      <section>
-        <h3>主题控制</h3>
-        <button onClick={toggleTheme}>
-          切换到{theme === 'light' ? '深色' : '浅色'}主题
-        </button>
-      </section>
-
-      <section>
-        <h3>用户状态</h3>
-        {user ? (
-          <>
-            <p>当前用户: {user.name}</p>
-            <p>角色: {user.role}</p>
-            <button onClick={logout}>退出登录</button>
-          </>
-        ) : (
-          <button onClick={() => login({ name: '测试用户', role: '管理员' })}>
-            登录
-          </button>
-        )}
-      </section>
+    <div
+      style={{
+        backgroundColor,
+        color: textColor,
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        transition: "all 0.3s",
+      }}
+    >
+      <h1>当前主题：{theme}</h1>
+      <button
+        onClick={toggleTheme}
+        style={{
+          padding: "0.5rem 1rem",
+          fontSize: "1rem",
+          cursor: "pointer",
+        }}
+      >
+        切换主题
+      </button>
     </div>
   );
 };
 
-export default ContextDemo; 
+// 5. 主组件，使用 ThemeProvider 包裹
+const AppBox = () => {
+  return (
+    <FatherBox>
+      <ChildrenBox />
+    </FatherBox>
+  );
+};
+
+export default AppBox;

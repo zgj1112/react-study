@@ -31,7 +31,7 @@ import LifecycleDemo from "./components/8lifecycle";
 import RenderingDemo from "./components/9rendering";
 
 // 高级特性
-// import ContextDemo from "./components/11contextDemo";
+import ContextDemo from "./components/11contextDemo";
 import PerformanceDemo from "./components/12performance";
 import ReduxDemo from "./components/13reduxDemo";
 // import RouterDemo from "./components/14routerDemo";
@@ -39,6 +39,7 @@ import AxiosDemo from "./components/15axiosDemo";
 
 import UseImmerDemo from "./components/17useImmer";
 import UseSyncExternalStoreDemo from "./components/18useSyncExternalStore";
+import UseLayoutEffectDemo from "./components/19useLayoutEffect";
 
 /**
  * 应用主组件
@@ -71,7 +72,7 @@ function App() {
             <Route path="/rendering" element={<RenderingDemo />} />
 
             {/* 高级特性路由 */}
-            {/* <Route path="/context" element={<ContextDemo />} /> */}
+            <Route path="/context" element={<ContextDemo />} />
             <Route path="/performance" element={<PerformanceDemo />} />
             <Route path="/redux" element={<ReduxDemo />} />
             {/* <Route path="/router" element={<RouterDemo />} /> */}
@@ -83,6 +84,7 @@ function App() {
               path="/useSyncExternalStore"
               element={<UseSyncExternalStoreDemo />}
             />
+            <Route path="/useLayoutEffect" element={<UseLayoutEffectDemo />} />
           </Routes>
         </div>
       </BrowserRouter>

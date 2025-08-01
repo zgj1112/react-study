@@ -105,7 +105,7 @@ const modules: ModuleCard[] = [
   },
   {
     id: 15,
-    title: "接口调用",
+    title: "axios接口调用",
     description: "接口调用",
     path: "/axios",
   },
@@ -126,6 +126,12 @@ const modules: ModuleCard[] = [
     title: "useSyncExternalStore",
     description: "useSyncExternalStore",
     path: "/useSyncExternalStore",
+  },
+  {
+    id: 19,
+    title: "useLayoutEffect",
+    description: "useLayoutEffect",
+    path: "/useLayoutEffect",
   },
 ];
 
