@@ -40,6 +40,8 @@ import AxiosDemo from "./components/15axiosDemo";
 import UseImmerDemo from "./components/17useImmer";
 import UseSyncExternalStoreDemo from "./components/18useSyncExternalStore";
 import UseLayoutEffectDemo from "./components/19useLayoutEffect";
+import UseMemoDemo from "./components/20useMemo";
+import UseTranstionDemo from "./components/21useTranstion";
 
 /**
  * 应用主组件
@@ -85,6 +87,8 @@ function App() {
               element={<UseSyncExternalStoreDemo />}
             />
             <Route path="/useLayoutEffect" element={<UseLayoutEffectDemo />} />
+            <Route path="/useMemoDemo" element={<UseMemoDemo />} />
+            <Route path="/useTranstionDemo" element={<UseTranstionDemo />} />
           </Routes>
         </div>
       </BrowserRouter>

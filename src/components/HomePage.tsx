@@ -133,6 +133,18 @@ const modules: ModuleCard[] = [
     description: "useLayoutEffect",
     path: "/useLayoutEffect",
   },
+  {
+    id: 20,
+    title: "useMemoDemo",
+    description: "useMemoDemo",
+    path: "/useMemoDemo",
+  },
+  {
+    id: 21,
+    title: "useTranstionDemo",
+    description: "useTranstionDemo",
+    path: "/useTranstionDemo",
+  },
 ];
 
 /**

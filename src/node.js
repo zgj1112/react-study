@@ -4,6 +4,8 @@
 import express from 'express';
 import cors from 'cors';
 import mysql from 'mysql2';
+import http from "http";
+
 const app = express();
 const port = 3000;
 app.use(cors()); // 允许所有来源的跨域请求
@@ -11,6 +13,23 @@ app.use(cors()); // 允许所有来源的跨域请求
 app.get('/', (req, res) => {
   res.send('欢迎访问微后台！');
 });
+
+
+const server = http.createServer((req, res) => {
+  const ip = req.socket.remoteAddress;
+  console.log('客户端IP:', ip);
+  res.end('Hello World');
+});
+
+// 启动服务器
+// app.listen(port, () => {
+//   console.log(`微后台应用运行在 http://localhost:${port}`);
+// });
+
+server.listen(3001, () => {
+  console.log(`微后台应用运行在 http://localhost:3001`);
+});
+
 
 // app.get('/createDatabase', (req, res) => {
 //   // 创建连接
@@ -39,8 +58,3 @@ app.get('/', (req, res) => {
 //   });
 //   res.send('111');
 // });
-
-// 启动服务器
-app.listen(port, () => {
-  console.log(`微后台应用运行在 http://localhost:${port}`);
-});

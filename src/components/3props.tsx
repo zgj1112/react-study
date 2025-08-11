@@ -9,6 +9,8 @@ interface UserProps {
   onNameClick: (name: string) => void; //父组件方法传入
 }
 
+//兄弟组件用mitt 和vue用法相同
+
 // 子组件 也可以解构
 // const UserCard: React.FC<UserProps> = ({ name, age, isAdmin = false, hobbies, onNameClick }) => {
 const UserCard: React.FC<UserProps> = (props: UserProps) => {
