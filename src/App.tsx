@@ -42,6 +42,8 @@ import UseSyncExternalStoreDemo from "./components/18useSyncExternalStore";
 import UseLayoutEffectDemo from "./components/19useLayoutEffect";
 import UseMemoDemo from "./components/20useMemo";
 import UseTranstionDemo from "./components/21useTranstion";
+import UseSuspenseDemo from "./components/22useSuspense";
+import UseCreatePortalDemo from "./components/23createPortal";
 
 /**
  * 应用主组件
@@ -89,6 +91,8 @@ function App() {
             <Route path="/useLayoutEffect" element={<UseLayoutEffectDemo />} />
             <Route path="/useMemoDemo" element={<UseMemoDemo />} />
             <Route path="/useTranstionDemo" element={<UseTranstionDemo />} />
+            <Route path="/useSuspense" element={<UseSuspenseDemo />} />
+            <Route path="/createPortal" element={<UseCreatePortalDemo />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -145,6 +145,18 @@ const modules: ModuleCard[] = [
     description: "useTranstionDemo",
     path: "/useTranstionDemo",
   },
+  {
+    id: 22,
+    title: "useSuspense",
+    description: "useSuspense",
+    path: "/useSuspense",
+  },
+  {
+    id: 23,
+    title: "createPortal",
+    description: "createPortal",
+    path: "/createPortal",
+  },
 ];
 
 /**

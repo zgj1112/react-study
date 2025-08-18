@@ -6,7 +6,7 @@ interface Item {
   address: string;
 }
 
-//memo参数不重新渲染 callback方法不重新渲染
+//memo参数不重新渲染 useMemo 缓存计算结果 callback方法不重新渲染
 
 // React.memo 避免无关更新导致子组件重渲染 
 interface UserCardProps {
