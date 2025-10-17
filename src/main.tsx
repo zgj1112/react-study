@@ -1,7 +1,7 @@
 // import { StrictMode } from 'react'
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import router from "../routes";
+import router from "src/routes";
 
 // 引入css
 import "mars3d-cesium/Build/Cesium/Widgets/widgets.css";
