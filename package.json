@@ -17,6 +17,7 @@
     "mars3d": "^3.10.6",
     "mars3d-cesium": "^1.134.0",
     "react": "^19.1.1",
+    "react-bmapgl": "^1.0.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4",
     "use-immer": "^0.11.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@types/bmapgl": "^0.0.7",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",

@@ -157,11 +157,17 @@ const modules: ModuleCard[] = [
     description: "createPortal",
     path: "/createPortal",
   },
-    {
+  {
     id: 24,
     title: "地图测试",
     description: "mars3d地图测试",
     path: "/mars3dTest",
+  },
+  {
+    id: 25,
+    title: "百度地图测试",
+    description: "百度地图测试",
+    path: "/baiduMap",
   },
 ];
 
