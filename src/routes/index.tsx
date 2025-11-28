@@ -35,7 +35,10 @@ import UseSuspenseDemo from "@components/22useSuspense";
 import UseCreatePortalDemo from "@components/23createPortal";
 
 import Mars3dTest from "@components/24mars3dTest";
-import BaiduMap from "@components/25baiduMapTest";
+// import BaiduMap from "@components/25baiduMapTest";
+import LeafletMap from "@components/26leafletMap";
+import UploadDemo from "@components/27upload";
+
 // ===== 路由配置 =====
 const router = createBrowserRouter([
   {
@@ -75,7 +78,9 @@ const router = createBrowserRouter([
 
   // 地图页面
   { path: "mars3dTest", element: <Mars3dTest /> },
-  { path: "baiduMap", element: <BaiduMap /> },
+  // { path: "baiduMap", element: <BaiduMap /> },
+  { path: "leafletMap", element: <LeafletMap /> },
+  { path: "upload", element: <UploadDemo /> },
 ]);
 
 export default router;

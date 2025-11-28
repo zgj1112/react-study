@@ -163,11 +163,23 @@ const modules: ModuleCard[] = [
     description: "mars3d地图测试",
     path: "/mars3dTest",
   },
+  // {
+  //   id: 25,
+  //   title: "百度地图测试",
+  //   description: "百度地图测试",
+  //   path: "/baiduMap",
+  // },
   {
-    id: 25,
-    title: "百度地图测试",
-    description: "百度地图测试",
-    path: "/baiduMap",
+    id: 26,
+    title: "leaflet测试",
+    description: "leaflet测试",
+    path: "/leafletMap",
+  },
+  {
+    id: 27,
+    title: "上传",
+    description: "上传",
+    path: "/upload",
   },
 ];
 
@@ -178,7 +190,7 @@ const modules: ModuleCard[] = [
 const HomePage: React.FC = () => {
   return (
     <div className="home-container">
-      <h1>React 学习示例</h1>
+      <h1>React 集成测试</h1>
       <div className="module-grid">
         {modules.map((module) => (
           <Link to={module.path} key={module.id} className="module-card">

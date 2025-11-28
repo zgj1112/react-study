@@ -8,7 +8,7 @@ import {
   useParams,
   useLocation,
 } from "react-router-dom";
-import PrivateRoute from "../routes/PrivateRoute";
+// import PrivateRoute from "../routes/PrivateRoute";
 
 // 首页组件
 const Home = () => (
@@ -113,14 +113,14 @@ const RouterDemo = () => {
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetail />} />
           <Route path="/login" element={<Login />} />
-          <Route
+          {/* <Route
             path="/dashboard"
             element={
               <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
             }
-          />
+          /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
