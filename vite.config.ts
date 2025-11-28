@@ -9,7 +9,7 @@ export default defineConfig({
     alias: {
       src: path.resolve(__dirname, "src"),
       "@view": path.resolve(__dirname, "src/view"),
-      "@components":path.resolve(__dirname, "src/view/components"),
+      "@components": path.resolve(__dirname, "src/view/components"),
       "@assets": path.resolve(__dirname, "src/assets"),
       "@utils": path.resolve(__dirname, "src/utils"),
       "@api": path.resolve(__dirname, "src/api"),
@@ -17,4 +17,5 @@ export default defineConfig({
     extensions: [".js", ".ts", ".jsx", ".tsx", ".json"],
   },
   plugins: [react(), mars3dPlugin() as unknown as Plugin],
+  base: "/react-study/",
 });
